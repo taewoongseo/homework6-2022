@@ -5,12 +5,12 @@ window.addEventListener("load", function() {
 	video.autoplay = false
 	video.loop = false
 	console.log("The current volume is ", video.volume)
-	document.querySelector("#volume").innerHTML = video.volume*100 + "%"
 	video.mute = false;
 });
 
 document.querySelector("#play").addEventListener("click", function() {
 	console.log("Play Video");
+	document.querySelector("#volume").innerHTML = video.volume*100 + "%"
 	video.play()
 });
 
@@ -34,6 +34,10 @@ document.querySelector("#faster").addEventListener("click", function() {
 document.querySelector("#skip").addEventListener("click", function() {
 	video.currentTime += 15;
 	console.log("new time is " + video.currentTime);
+	if (video.currentTime >= video.duration){
+		video.currentTime = 0;
+		video.play();
+	}
 });
 
 
